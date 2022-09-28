@@ -24,7 +24,7 @@ app.get('/user/:id', (req,res)=>{ // dynamic route
 app.post('/addUser', (req,res)=>{
     // save to database
     console.log('data received', req.body);
-    res.send("See Your Sent Post Data in server");
+    res.send(req.body);
 
 })
 
