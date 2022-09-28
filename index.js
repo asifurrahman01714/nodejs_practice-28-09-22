@@ -2,8 +2,9 @@
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser');
-const jsonParser = bodyParser.json();
 const app = express()
+
+app.use(bodyParser.json())
 app.use(cors())
 // create a new route
 app.get('/', (req,res) =>{
