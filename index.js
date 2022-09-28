@@ -13,6 +13,9 @@ app.get('/user/:id', (req,res)=>{ // dynamic route
     const id = req.params.id;
     console.log(id);
     const name = users[id];
+    const sorted = req.query.sort;
+    console.log(sorted)
+    console.log({id, name});
     res.send({id,name});
 })
 // Running the server on port 3000
