@@ -9,9 +9,9 @@ app.get('/', (req,res) =>{
 
 // create a user route
 const users = ["asif", "sakib", "arif", "azad"];
-app.get('/user/:id', (req,res)=>{
+app.get('/user/:id', (req,res)=>{ // dynamic route
     const id = req.params.id;
-    console.log(id)
+    console.log(id);
     const name = users[id];
     res.send({id,name});
 })
