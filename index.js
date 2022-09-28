@@ -1,7 +1,9 @@
 /* Create a new application instance using express server*/
 const express = require('express')
-const app = express()
+const cors = require('cors')
 
+const app = express()
+app.use(cors())
 // create a new route
 app.get('/', (req,res) =>{
     res.send('Hello World, I am a Node.js Developer')
