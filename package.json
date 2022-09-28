@@ -1,0 +1,19 @@
+{
+  "name": "nodejs_practice-28-09-22",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asifurrahman01714/nodejs_practice-28-09-22.git"
+  },
+  "author": "Asif Ur Rahman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asifurrahman01714/nodejs_practice-28-09-22/issues"
+  },
+  "homepage": "https://github.com/asifurrahman01714/nodejs_practice-28-09-22#readme"
+}
