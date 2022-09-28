@@ -1,7 +1,8 @@
 /* Create a new application instance using express server*/
 const express = require('express')
 const cors = require('cors')
-
+const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json();
 const app = express()
 app.use(cors())
 // create a new route
@@ -18,6 +19,13 @@ app.get('/user/:id', (req,res)=>{ // dynamic route
     res.send({id,name});
 })
 
+// Creating a post route
+app.post('/addUser', (req,res)=>{
+    // save to database
+    console.log('data received', req.body);
+    res.send("See Your Sent Post Data in server");
+
+})
 
 // Running the server on port 3000
 app.listen(3000,()=>{
