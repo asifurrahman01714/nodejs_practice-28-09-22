@@ -8,9 +8,17 @@
 </head>
 <body>
     <h1>Client site</h1>
-    <div class="container">
+    <form action="/addUser" method="POST">
+        <input type="text" name="name" placeholder="name">
+        <input type="text" name="price" placeholder="price">
+        <input type="text" name="quantity" placeholder="quantity">
+        <button type="submit">Submit Product</button>
+    </form>
+    <!-- <div class="container">
         <div class="row">
-            <input type="text" id="name">
+            <input type="text" id="name" placeholder="name">
+            <input type="text" id="price" placeholder="price">
+            <input type="text" id="quantity" placeholder="quantity">
             <button id="sendData">Send Data</button>
         </div>
     </div>
@@ -29,7 +37,13 @@
         const sendData = document.getElementById('sendData');
         sendData.addEventListener('click', ()=>{
             const name = document.getElementById('name').value;
-            console.log(name);
+            const price = document.getElementById('price').value;
+            const quantity = document.getElementById('quantity').value;
+            const product = {
+                name:name,
+                price:price,
+                quantity:quantity
+            }
 
             // Post Data
             fetch('http://localhost:3000/addUser',{
@@ -37,17 +51,17 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({name})
+                body: JSON.stringify(product)
             })
 
             // Get Data Response by After posting
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                document.getElementById('userName').innerHTML = data.name
+                document.getElementById('userName').innerHTML = data.name + data.price + data.quantity
             })
         })
 
-    </script>
+    </script> -->
 </body>
 </html>

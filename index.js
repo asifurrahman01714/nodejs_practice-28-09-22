@@ -4,18 +4,18 @@ const cors = require('cors')
 const bodyParser = require('body-parser');
 const app = express()
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors())
 // create a new route
 app.get('/', (req,res) =>{
-    res.send('Hello World, I am a Node.js Developer')
+    res.sendFile(__dirname + '/index.html')
 })
 
 // create a user route
 const users = ["asif", "sakib", "arif", "azad"];
 app.get('/user/:id', (req,res)=>{ // dynamic route
     const id = req.params.id;
-    console.log(id);
     const name = users[id];
     res.send({id,name});
 })
