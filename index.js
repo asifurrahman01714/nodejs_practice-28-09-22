@@ -29,12 +29,23 @@ const products = [
 ]
 app.get('/products/:name', (req, res)=>{
     const name = req.params.name;
+    const product = products.find(function(e){
+        return e.name == "modhu"
+    })
+    console.log(product)
+    res.send(product)
+})
+
+// Find product using filter method
+/* app.get('/products/:name', (req, res)=>{
+    const name = req.params.name;
     const product = products.filter(function(e){
         return e.name == "modhu"
     })
     console.log(product)
     res.send(product[0])
 })
+*/
 
 // Creating a post route
 app.post('/addUser', (req,res)=>{
