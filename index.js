@@ -28,9 +28,9 @@ const products = [
     {name: "lau", price: 120, quantity: 12},
 ]
 app.get('/products/:name', (req, res)=>{
-    const name = req.params.name;
-    const product = products.find(function(e){
-        return e.name == "modhu"
+    const productName = req.params.name;
+    const product = products.find((product)=>{
+        return product.name = productName;
     })
     console.log(product)
     res.send(product)
