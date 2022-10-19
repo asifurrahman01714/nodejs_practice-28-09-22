@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors())
 // create a new route
 app.get('/', (req,res) =>{
-    res.sendFile(__dirname + '/index.html')
+    res.sendFile(__dirname + '/product.html')
 })
 
 // create a user route
@@ -18,6 +18,22 @@ app.get('/user/:id', (req,res)=>{ // dynamic route
     const id = req.params.id;
     const name = users[id];
     res.send({id,name});
+})
+
+// Create a product route
+const products = [
+    {name: "modhu", price: 120, quantity: 12},
+    {name: "potol", price: 120, quantity: 12},
+    {name: "alu", price: 120, quantity: 12},
+    {name: "lau", price: 120, quantity: 12},
+]
+app.get('/products/:name', (req, res)=>{
+    const name = req.params.name;
+    const product = products.find(function(e){
+        return e.name == "modhu"
+    })
+    console.log(product)
+    res.send(product)
 })
 
 // Creating a post route
