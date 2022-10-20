@@ -31,7 +31,7 @@ client.connect(err => {
 
   // Get data from mongodb
   app.get('/products',(req,res)=>{
-    productCollection.find({})
+    productCollection.find({}).limit(4)
     .toArray((err, documents)=>{
         console.log(documents);
         res.send(documents);
