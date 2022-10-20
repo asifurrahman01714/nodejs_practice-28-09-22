@@ -28,6 +28,15 @@ client.connect(err => {
         console.log(data);
     })
   })
+
+  // Get data from mongodb
+  app.get('/products',(req,res)=>{
+    productCollection.find({})
+    .toArray((err, documents)=>{
+        console.log(documents);
+        res.send(documents);
+    })
+  })
 });
 
 
