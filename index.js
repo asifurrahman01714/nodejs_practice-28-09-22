@@ -35,7 +35,6 @@ client.connect(err => {
         if (err) throw err;
         console.log(result);
         res.send(result)
-        db.close();
       });
   })
 });

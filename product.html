@@ -14,5 +14,23 @@
         <input type="text" name="quantity" placeholder="quantity">
         <button type="submit">Submit Product</button>
     </form>
+    <div id="products">
+        <h1>All Products</h1>
+    </div>
+
+    <script>
+        fetch("http://localhost:3000/products")
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+            const products = document.getElementById('products');
+            data.forEach(pd => {
+                const p = document.createElement('p');
+                p.innerText = pd.product;
+                products.appendChild(p);
+            });
+        })
+
+    </script>
 </body>
 </html>
