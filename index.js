@@ -31,11 +31,12 @@ client.connect(err => {
 
   // Get data from mongodb
   app.get('/products',(req,res)=>{
-    productCollection.find({}).limit(4)
-    .toArray((err, documents)=>{
-        console.log(documents);
-        res.send(documents);
-    })
+    productCollection.find({}).limit(4).toArray(function(err, result) {
+        if (err) throw err;
+        console.log(result);
+        res.send(result)
+        db.close();
+      });
   })
 });
 
