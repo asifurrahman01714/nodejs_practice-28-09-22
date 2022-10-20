@@ -16,9 +16,9 @@ app.use(cors())
 const uri = "mongodb+srv://nodeMongoBasic:wLLj-UL-LrC7LES@atlascluster.eb7mhhm.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 client.connect(err => {
-  const collection = client.db("nodeMongoBasicDatabase").collection("nodeMongoBasicDatabasProducts");
+  const productCollection = client.db("nodeMongoBasicDatabase").collection("nodeMongoBasicDatabasProducts");
   console.log("Database Connected");
-  
+  productCollection.insertOne({name:'lau', price:10});
 });
 
 
