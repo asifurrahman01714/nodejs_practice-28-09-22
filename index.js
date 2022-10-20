@@ -3,10 +3,27 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser');
 const app = express()
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
+// Middle ware apps
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors())
+
+
+
+
+const uri = "mongodb+srv://nodeMongoBasic:wLLj-UL-LrC7LES@atlascluster.eb7mhhm.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+  const collection = client.db("nodeMongoBasicDatabase").collection("nodeMongoBasicDatabasProducts");
+  console.log("Database Connected");
+  
+});
+
+
+
+
 // create a new route
 app.get('/', (req,res) =>{
     res.sendFile(__dirname + '/product.html')
