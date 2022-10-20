@@ -18,7 +18,16 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 client.connect(err => {
   const productCollection = client.db("nodeMongoBasicDatabase").collection("nodeMongoBasicDatabasProducts");
   console.log("Database Connected");
-  productCollection.insertOne({name:'lau', price:10});
+  
+  // Creating a post api
+  app.post('/addProduct', (req, res)=>{
+    const product = req.body;
+    productCollection.insertOne(product)
+    .then(data=>{
+        res.send(data)
+        console.log(data);
+    })
+  })
 });
 
 
