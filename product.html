@@ -26,11 +26,16 @@
             const products = document.getElementById('products');
             data.forEach(pd => {
                 const p = document.createElement('p');
-                p.innerText = pd.product;
+                p.innerHTML = `
+                Product Name: ${pd.product} <strong>(Id: ${pd._id})</strong> Delete: <button onclick="deleteProduct('${pd._id}')">Delete</button>
+                `;
                 products.appendChild(p);
             });
         })
 
+        function deleteProduct(id){
+            console.log(id);
+        }
     </script>
 </body>
 </html>
