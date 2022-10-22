@@ -13,8 +13,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors())
 
 
-
-
 const uri = "mongodb+srv://nodeMongoBasic:wLLj-UL-LrC7LES@atlascluster.eb7mhhm.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 client.connect(err => {
@@ -28,6 +26,7 @@ client.connect(err => {
     .then(data=>{
         res.send(data)
         console.log(data);
+        
     })
   })
 
@@ -39,6 +38,7 @@ client.connect(err => {
     productCollection.deleteOne({_id: ObjectId(productId)})
     .then(result=>{
         console.log(result.deletedCount);
+        res.send(result.deletedCount>0)
     })
   })
 

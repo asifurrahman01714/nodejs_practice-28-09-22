@@ -31,19 +31,23 @@
             data.forEach(pd => {
                 const p = document.createElement('p');
                 p.innerHTML = `
-                Product Name: ${pd.product} <strong>(Id: ${pd._id})</strong> Delete: <button onclick="deleteProduct('${pd._id}')">Delete</button>
+                Product Name: ${pd.product} <strong>(Id: ${pd._id})</strong> Delete: <button onclick="deleteProduct(event, '${pd._id}')">Delete</button>
                 `;
                 products.appendChild(p);
             });
         })
 
-        function deleteProduct(id){
+        function deleteProduct(event, id){
+            console.log(event.target.parentNode);
             fetch(`/delete/${id}`,{
                 method:"DELETE"
             })
             .then(res=>res.json())
             .then(data=>{
-                console.log(`${data} deleted successfully`);
+                if(data){
+                    console.log(data);
+                    event.target.parentNode.style.display = 'none';
+                }
             })
         }
     </script>
