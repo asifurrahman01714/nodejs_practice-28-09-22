@@ -65,6 +65,20 @@ client.connect(err => {
         res.send(result)
       });
   })
+
+  // Update data
+  app.patch('/update/:id',(req,res)=>{
+    console.log(req.body);
+    productCollection.updateOne({_id:ObjectId(req.params.id)},
+    { 
+        $set: {price: req.body.price, quantity: req.body.quantity } 
+    
+    })
+    .then(result=>{
+        console.log(result);
+        res.send(result.matchedCount>0)
+    })
+  })
 });
 
 
