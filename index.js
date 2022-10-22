@@ -24,9 +24,9 @@ client.connect(err => {
     const product = req.body;
     productCollection.insertOne(product)
     .then(data=>{
-        res.send(data)
-        console.log(data);
-        
+        // res.send(data)
+        // console.log(data);
+        res.redirect('/');
     })
   })
 
