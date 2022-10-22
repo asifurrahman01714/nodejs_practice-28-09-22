@@ -15,6 +15,13 @@ app.use(cors())
 
 const uri = "mongodb+srv://nodeMongoBasic:wLLj-UL-LrC7LES@atlascluster.eb7mhhm.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+
+// create a new route
+app.get('/', (req,res) =>{
+    res.sendFile(__dirname + '/product.html')
+})
+
+
 client.connect(err => {
   const productCollection = client.db("nodeMongoBasicDatabase").collection("nodeMongoBasicDatabasProducts");
   console.log("Database Connected");
@@ -42,6 +49,14 @@ client.connect(err => {
     })
   })
 
+  // Get specific data from mongodb
+  app.get('/product/:id',(req,res)=>{
+    const id = req.params.id;
+    productCollection.find({_id:ObjectId(id)})
+    .toArray((err,documents)=>{
+        res.send(documents[0])
+    })
+  })
   // Get data from mongodb
   app.get('/products',(req,res)=>{
     productCollection.find({}).toArray(function(err, result) {
@@ -52,56 +67,6 @@ client.connect(err => {
   })
 });
 
-
-
-
-// create a new route
-app.get('/', (req,res) =>{
-    res.sendFile(__dirname + '/product.html')
-})
-
-// create a user route
-const users = ["asif", "sakib", "arif", "azad"];
-app.get('/user/:id', (req,res)=>{ // dynamic route
-    const id = req.params.id;
-    const name = users[id];
-    res.send({id,name});
-})
-
-// Create a product route
-const products = [
-    {name: "modhu", price: 120, quantity: 12},
-    {name: "potol", price: 120, quantity: 12},
-    {name: "alu", price: 120, quantity: 12},
-    {name: "lau", price: 120, quantity: 12},
-]
-app.get('/products/:name', (req, res)=>{
-    const productName = req.params.name;
-    const product = products.find((product)=>{
-        return product.name = productName;
-    })
-    console.log(product)
-    res.send(product)
-})
-
-// Find product using filter method
-/* app.get('/products/:name', (req, res)=>{
-    const name = req.params.name;
-    const product = products.filter(function(e){
-        return e.name == "modhu"
-    })
-    console.log(product)
-    res.send(product[0])
-})
-*/
-
-// Creating a post route
-app.post('/addUser', (req,res)=>{
-    // save to database
-    console.log('data received', req.body);
-    res.send(req.body);
-
-})
 
 // Running the server on port 3000
 app.listen(3000,()=>{

@@ -18,6 +18,7 @@
         
     </div>
 
+    <div id="update"></div>
     <script>
         fetch("http://localhost:3000/products")
         .then(res=>res.json())
@@ -31,12 +32,16 @@
             data.forEach(pd => {
                 const p = document.createElement('p');
                 p.innerHTML = `
-                Product Name: ${pd.product} <strong>(Id: ${pd._id})</strong> Delete: <button onclick="deleteProduct(event, '${pd._id}')">Delete</button>
+                Product Name: ${pd.product} 
+                <strong>(Id: ${pd._id})</strong> 
+                Delete: <button onclick="deleteProduct(event, '${pd._id}')">Delete</button>
+                Update: <button onclick="loadProduct('${pd._id}')">Update</button>
                 `;
                 products.appendChild(p);
             });
         })
 
+        // DeleteProduct
         function deleteProduct(event, id){
             console.log(event.target.parentNode);
             fetch(`/delete/${id}`,{
@@ -49,6 +54,26 @@
                     event.target.parentNode.style.display = 'none';
                 }
             })
+        }
+
+        // Update Product
+        function loadProduct(id){
+            console.log(id);
+            fetch(`/product/${id}`)
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data);
+                const update = document.getElementById('update');
+                update.innerHTML = `
+                Update ${data.name} <br>
+                <input type="text" value=${data.price} id="price"> <br>
+                <input type="text" value=${data.quantity} id="quantity"> <br>
+                <button onclick="updateProduct('${data._id}')">Submit</button>
+                `;
+            })
+        }
+        function updateProduct(id){
+            console.log(id)
         }
     </script>
 </body>
